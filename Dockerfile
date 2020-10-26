@@ -9,20 +9,26 @@ LABEL   cisco.descriptor-schema-version="2.12" \
         cisco.type=docker \
         cisco.cpuarch=x86_64 \
         cisco.resources.profile=custom \
-        cisco.resources.cpu=54 \
-        cisco.resources.memory=64 \
-        cisco.resources.disk=2 \
-        cisco.resources.network.0.interface-name=eth0
+        cisco.resources.cpu=800 \
+        cisco.resources.memory=256 \
+        cisco.resources.disk=10 \
+        cisco.resources.network.0.interface-name=eth0 \
+	cisco.monitor.script="healthprobe.sh" \
+	cisco.startup.rootfs="rootfs.tar" \
+	cisco.startup.target=["/bin/runapp.sh start"]
+	
 RUN     yum -y install wget \
      && cd /etc/yum.repos.d/ \
      && wget http://rpms.adiscon.com/v8-stable/rsyslog.repo
-RUN	    yum -y install rsyslog \
-	      rsyslog-elasticsearch \
-   	    rsyslog-imptcp \
-	      rsyslog-imrelp \
-	      rsyslog-mmjsonparse \
+RUN     yum -y install rsyslog \
+        rsyslog-elasticsearch \
+        rsyslog-imptcp \
+	rsyslog-imrelp \
+	rsyslog-mmjsonparse \
         rsyslog-omrelp \
-	      rsyslog-omstdout \
-	      rsyslog-pmciscoios \
+	rsyslog-omstdout \
+	rsyslog-pmciscoios \
      && rm /etc/rsyslog.d/listen.conf
 COPY    rsyslog.conf /etc/rsyslog.conf
+COPY    healthprobe.sh /bin/healthprobe.sh
+COPY    runapp.sh /bin/runapp.sh
