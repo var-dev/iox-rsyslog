@@ -20,8 +20,9 @@ LABEL   cisco.descriptor-schema-version="2.12" \
 RUN     yum -y install wget \
      && cd /etc/yum.repos.d/ \
      && wget http://rpms.adiscon.com/v8-stable/rsyslog.repo
-RUN     yum -y install rsyslog \
-        rsyslog-elasticsearch \
+RUN     yum -y install \
+        rsyslog \
+#        rsyslog-elasticsearch \
 #        rsyslog-imptcp \
 #	rsyslog-imrelp \
 	rsyslog-mmjsonparse \
