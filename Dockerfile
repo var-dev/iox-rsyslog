@@ -22,13 +22,13 @@ RUN     yum -y install wget \
      && wget http://rpms.adiscon.com/v8-stable/rsyslog.repo
 RUN     yum -y install rsyslog \
         rsyslog-elasticsearch \
-        rsyslog-imptcp \
-	rsyslog-imrelp \
+#        rsyslog-imptcp \
+#	rsyslog-imrelp \
 	rsyslog-mmjsonparse \
-        rsyslog-omrelp \
+#        rsyslog-omrelp \
 	rsyslog-omstdout \
-	rsyslog-pmciscoios \
-     && rm /etc/rsyslog.d/listen.conf
+	rsyslog-pmciscoios
+#     && rm /etc/rsyslog.d/listen.conf
 COPY    rsyslog.conf /etc/rsyslog.conf
 COPY    healthprobe.sh /bin/healthprobe.sh
 COPY    runapp.sh /bin/runapp.sh
