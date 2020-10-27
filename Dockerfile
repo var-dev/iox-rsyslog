@@ -17,17 +17,14 @@ LABEL   cisco.descriptor-schema-version="2.12" \
 	cisco.startup.rootfs="rootfs.tar" \
 	cisco.startup.target=["/bin/runapp.sh start"]
 
-RUN     yum -y remove rsyslog*
-RUN     yum -y install wget \
-     && cd /etc/yum.repos.d/ \
-     && wget http://rpms.adiscon.com/v8-stable/rsyslog.repo
-RUN     yum -y install \
+RUN     curl http://rpms.adiscon.com/v8-stable/rsyslog.repo --output /etc/yum.repos.d/rsyslog.repo \
+    &&  yum -y install \
         rsyslog-8.2010.0-1.el8.x86_64 \
         rsyslog-elasticsearch-8.2010.0-1.el8.x86_64 \
 	rsyslog-mmjsonparse-8.2010.0-1.el8.x86_64 \
         rsyslog-mmnormalize-8.2010.0-1.el8.x86_64 \
 	rsyslog-pmciscoios-8.2010.0-1.el8.x86_64
-#     && rm /etc/rsyslog.d/listen.conf
+
 COPY    rsyslog.conf /etc/rsyslog.conf
 COPY    healthprobe.sh /bin/healthprobe.sh
 COPY    runapp.sh /bin/runapp.sh
