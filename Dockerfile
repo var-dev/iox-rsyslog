@@ -1,6 +1,6 @@
 FROM    centos:8
 LABEL   maintainer="var-dev@github"
-LABEL   cisco.descriptor-schema-version="2.12" \
+LABEL   cisco.descriptor-schema-version="2.4" \
         cisco.info.name="rsyslog" \
         cisco.info.description="Cisco iox rsyslog" \
         cisco.info.version="0.1" \
