@@ -15,20 +15,18 @@ LABEL   cisco.descriptor-schema-version="2.12" \
         cisco.resources.network.0.interface-name=eth0 \
 	cisco.monitor.script="healthprobe.sh" \
 	cisco.startup.rootfs="rootfs.tar" \
-	cisco.startup.target=["/bin/runapp.sh start"]
-	
+	cisco.startup.target=["/bin/runapp.sh", "start"]
+
+RUN     yum -y remove rsyslog*
 RUN     yum -y install wget \
      && cd /etc/yum.repos.d/ \
      && wget http://rpms.adiscon.com/v8-stable/rsyslog.repo
 RUN     yum -y install \
-        rsyslog \
-#        rsyslog-elasticsearch \
-#        rsyslog-imptcp \
-#	rsyslog-imrelp \
-	rsyslog-mmjsonparse \
-#        rsyslog-omrelp \
-	rsyslog-omstdout \
-	rsyslog-pmciscoios
+        rsyslog-8.2010.0-1.el8.x86_64 \
+        rsyslog-elasticsearch-8.2010.0-1.el8.x86_64 \
+	rsyslog-mmjsonparse-8.2010.0-1.el8.x86_64 \
+        rsyslog-mmnormalize-8.2010.0-1.el8.x86_64 \
+	rsyslog-pmciscoios-8.2010.0-1.el8.x86_64
 #     && rm /etc/rsyslog.d/listen.conf
 COPY    rsyslog.conf /etc/rsyslog.conf
 COPY    healthprobe.sh /bin/healthprobe.sh
