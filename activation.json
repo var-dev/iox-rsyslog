@@ -3,7 +3,7 @@
      "profile": "custom",
      "cpu": 800,
      "disk": 10,
-     "memory": 256,
+     "memory": 2048,
      "network": [{
          "interface-name": "eth0",
          "ipv4": {
