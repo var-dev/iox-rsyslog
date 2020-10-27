@@ -16,7 +16,8 @@ LABEL   cisco.descriptor-schema-version="2.6" \
 	cisco.resources.network.0.ports.udp=514 \
 #	cisco.monitor.script="healthprobe.sh" \
 	cisco.startup.rootfs="rootfs.tar" \
-	cisco.startup.target="/usr/sbin/rsyslogd"
+	cisco.startup.target="/bin/sh"
+#	cisco.startup.target="/usr/sbin/rsyslogd"
 
 RUN     curl http://rpms.adiscon.com/v8-stable/rsyslog.repo --output /etc/yum.repos.d/rsyslog.repo \
     &&  yum -y install \
