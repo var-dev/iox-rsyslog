@@ -19,6 +19,7 @@ LABEL   cisco.descriptor-schema-version="2.4" \
 
 RUN     curl http://rpms.adiscon.com/v8-stable/rsyslog.repo --output /etc/yum.repos.d/rsyslog.repo \
     &&  yum -y install \
+        net-tools \
         rsyslog-8.2010.0-1.el8.x86_64 \
         rsyslog-elasticsearch-8.2010.0-1.el8.x86_64 \
 	rsyslog-mmjsonparse-8.2010.0-1.el8.x86_64 \
