@@ -1,6 +1,6 @@
 FROM    centos:8
 LABEL   maintainer="var-dev@github"
-LABEL   cisco.descriptor-schema-version="2.4" \
+LABEL   cisco.descriptor-schema-version="2.6" \
         cisco.info.name="rsyslog" \
         cisco.info.description="Cisco iox rsyslog" \
         cisco.info.version="0.1" \
@@ -10,7 +10,7 @@ LABEL   cisco.descriptor-schema-version="2.4" \
         cisco.cpuarch=x86_64 \
         cisco.resources.profile=custom \
         cisco.resources.cpu=800 \
-        cisco.resources.memory=256 \
+        cisco.resources.memory=2048 \
         cisco.resources.disk=10 \
         cisco.resources.network.0.interface-name=eth0 \
 #	cisco.monitor.script="healthprobe.sh" \
