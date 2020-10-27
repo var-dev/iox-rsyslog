@@ -15,7 +15,7 @@ LABEL   cisco.descriptor-schema-version="2.12" \
         cisco.resources.network.0.interface-name=eth0 \
 	cisco.monitor.script="healthprobe.sh" \
 	cisco.startup.rootfs="rootfs.tar" \
-	cisco.startup.target=["/bin/runapp.sh", "start"]
+	cisco.startup.target=["/bin/runapp.sh start"]
 
 RUN     yum -y remove rsyslog*
 RUN     yum -y install wget \
