@@ -6,39 +6,28 @@ then
 fi
 
 start_app() {
-    /usr/sbin/rsyslogd -n -f /etc/rsyslog.conf > /data/logs/rsyslog.log 2>&1
+  while [ ${app_restart} ]; do
+    echo "Starting rsyslogd"
+    /usr/sbin/rsyslogd -n -f /etc/rsyslog.conf > /data/logs/rsyslog.log 2>&1 &
+    pid=$!
+    echo "PID=$pid"
+    wait "$pid"
+    sleep 1
+  done
 }
 
 _term() {
   echo "Caught SIGTERM signal!"
-  kill -TERM "$pid" 2>/dev/null
-}                              
+  echo "Terminating!"
+  app_restart=""
+  pidof rsyslogd | xargs kill -TERM
+}
 
 trap _term SIGTERM
 
-case "$1" in
-start)
-        echo -n "Starting rsyslogd"
-        start_app
-        echo "done."
-        ;;
+app_restart=true
 
-stop)
-        echo -n "Stopping rsyslogd"
-        pidof rsyslogd | xargs kill -15
-        : exit 0
-        echo "done."
-        ;;
-
-force-reload|restart)
-        echo "Reconfiguring rsyslogd"
-        echo "done."
-        ;;
-
-*)
-        echo "Usage: /bin/runapp.sh {start|stop|restart}"
-        exit 1
-        ;;
-esac
+start_app
+echo "done. PID=$pid"
 
 exit 0
