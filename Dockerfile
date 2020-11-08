@@ -27,7 +27,9 @@ RUN     curl http://rpms.adiscon.com/v8-stable/rsyslog.repo --output /etc/yum.re
         rsyslog-elasticsearch-8.2010.0-1.el8.x86_64 \
 	rsyslog-mmjsonparse-8.2010.0-1.el8.x86_64 \
         rsyslog-mmnormalize-8.2010.0-1.el8.x86_64 \
-	rsyslog-pmciscoios-8.2010.0-1.el8.x86_64
+	rsyslog-pmciscoios-8.2010.0-1.el8.x86_64 \
+    &&  yum -y clean all \
+    &&  rm -rf /var/cache/yum
 
 COPY    rsyslog.conf /etc/rsyslog.conf
 COPY    runapp.sh /bin/runapp.sh
