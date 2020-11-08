@@ -1,20 +1,36 @@
 {
- "resources": {
-     "profile": "custom",
-     "cpu": 800,
-     "disk": 10,
-     "memory": 2048,
-     "network": [{
-         "interface-name": "eth0",
-         "ipv4": {
-          "default": true,
-          "dns": "10.0.0.1",
-          "gateway": "10.10.80.1",
-          "ip": "10.10.80.20",
-          "mode": "static",
-          "prefix": "24"
-         },
-         "network-name": "VPG0"
-     }]
- }
+  "resources": {
+   "auto_remove": false,
+   "cpu": 800,
+   "disk": 10,
+   "memory": 2048,
+   "network": [
+    {
+     "interface-name": "eth0",
+     "intf-matched": true,
+     "ipv4": {
+      "default": true,
+      "dns": "10.0.0.1",
+      "gateway": "10.10.80.1",
+      "ip": "10.10.80.20",
+      "mode": "static",
+      "prefix": "24"
+     },
+     "network-name": "VPG0"
+    },
+    {
+     "interface-name": "eth1",
+     "intf-matched": true,
+     "ipv4": {
+      "dns": "",
+      "ip": "10.10.71.10",
+      "mode": "static",
+      "prefix": "24"
+     },
+     "network-name": "mgmt-bridge100"
+    }
+   ],
+   "profile": "custom",
+   "vcpu": 1
+  }
 }
